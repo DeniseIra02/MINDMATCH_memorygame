@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Mind Match</title>
+    
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=VT323&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "VT323",monospace;
+        margin: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('../content/images/mainbg.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center;
+        background-size: cover;
+      }
+
+      /*1st Page*/
+      .upper-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        top: 0;
+        left: 0;
+        background-image: url('../content/images/mainbg.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center;
+        background-size: cover;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .upper-layer span {
+        font-size: 50px;
+        cursor: pointer;
+        background-color: #7f5185;
+        color: black;
+        padding: 20px 30px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .upper-layer span:hover {
+        background-color: black;
+        color: white;
+      }
+
+      /*Character*/
+      .character{
+        position: absolute;
+      }
+
+      .character{
+        left: 3%;
+        top: 65%;
+        bottom: 10%;
+        animation-name: chareffect;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+
+      }
+
+      @keyframes chareffect{
+          0%{
+            top: 25%;
+          }
+
+          50%{
+            top: 65% ;
+          }
+
+          100%{
+            top: 25%;
+          }
+      }
+
+      /*2nd Page Title*/
+      .game-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        height: 65px;
+        width: 900px;
+        max-width: 100%;
+        background-color: #7f5185;
+        color: white;
+        font-size: 27px;
+        align-items: center;
+        border: 5px solid black;
+        border-radius: 9px;
+        margin: 15px auto;
+        margin-top: 0;
+      }
+
+      .game-info .score span {
+        font-size: 30px;
+        color: #facc2d;
+      }
+      .game-info .name span {
+        font-size: 30px;
+        color: #facc2d;
+      }
+      .game-info .timer {
+        font-size: 30px;
+      }
+
+      /*2nd Page Card*/
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, 18vh);
+        width: 900px;
+        max-width: 100%;
+        justify-content: center;
+        margin: 0px auto;
+        gap: 20px;
+        font-size: 50px;
+      }
+
+      /*Cards Design*/
+      .cards .box {
+        cursor: pointer;
+        border: 5px solid black;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        color: #f4f4f4;
+        transform-style: preserve-3d;
+        transform: rotateX(180deg);
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        -webkit-transform: rotateX(180deg);
+        -moz-transform: rotateX(180deg);
+        -ms-transform: rotateX(180deg);
+        -o-transform: rotateX(180deg);
+      }
+
+      .cards .box .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cards .box .back {
+        backface-visibility: hidden;
+        transform: rotatex(180deg);
+        z-index: 10;
+        background-color:  wheat;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: rotatex(180deg);
+        -moz-transform: rotatex(180deg);
+        -ms-transform: rotatex(180deg);
+        -o-transform: rotatex(180deg);
+      }
+
+      .cards .box .front {
+        z-index: -3;
+        background-color: #7f5185;
+      }
+
+      .cards .box.is-flipped,
+      .cards .box.is-matched {
+        transform: rotateX(0deg);
+        pointer-events: none;
+        -webkit-transform: rotateX(0deg);
+        -moz-transform: rotateX(0deg);
+        -ms-transform: rotateX(0deg);
+        -o-transform: rotateX(0deg);
+      }
+
+      .cards.unclickable {
+        pointer-events: none;
+      }
+
+      /*End Game Button*/
+      .game-end {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      .game-end::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-image: url('../content/images/mainbg.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center;
+        background-size: cover;
+      }
+
+      .game-end div {
+        z-index: 3;
+        padding: 5px 10px;
+        cursor: pointer;
+        background-image: url('../content/images/endgamebg.png');
+        width: 500px;
+        height: 340px;
+        border-radius: 8px;
+        font-size: 30px;
+        color: black;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+      }
+
+      .game-end div h2 {
+        align-items: center;
+        justify-content: center;
+        font-size: 75px;
+        letter-spacing: 3px;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .game-end div p {
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .game-end div span {
+        font-size: 2rem;
+        background-color: #002243;
+        color: white;
+        border-radius: 15%;
+        padding: 7px;
+      }
+
+      .game-end div a {
+        font-size: 20px;
+        text-decoration: none;
+        color: white;
+        margin-left: 85px;
+        margin-top: 10px;
+        display: inline-block;
+        background-color: #002243;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+
+      .game-end div a:hover {
+        background-color: black;
+        color: white;
+      }
+      .danger {
+        color: red;
+        animation: danger 1s infinite cubic-bezier(0.14, 0.04, 0, 1.04);
+        -webkit-animation: danger 1s infinite cubic-bezier(0.14, 0.04, 0, 1.04);
+      }
+
+      @keyframes danger {
+        0% {
+          font-size: 24;
+        }
+        to {
+          font-size: 30px;
+        }
+      }
+
+      button{
+        margin: 5px;
+        color: whitesmoke;
+        font-size: 20px;
+        background: rgb(127, 81, 133);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- medium BG music/ Mute and Unmute Button -->
+    <div id="mutebut">
+      <button type="button" id="soundbutton">Mute 🔇</button>
+    </div>
+    <audio id="sound" autoplay="autoplay" loop="loop">
+      <source src="/sound/homebgmusic.mp3" type="audio/wav">
+    </audio>
+
+    <!-- Game Page Moving character -->
+    <div class="character">
+      <img src="../content/images/character1.png" />
+    </div>
+    <!-- Game Page Heading -->
+    <div class="container">
+      <div class="upper-layer"><span>START THE GAME</span></div>
+      <div class="game-info">
+        <div class="name">HELLO: <span></span></div>
+        <div class="timer">
+          <span id="minute"></span>:<span id="second">00</span>
+        </div>
+        <div class="score">WRONG TRIES:<span></span></div>
+      </div>
+      <!--CONTENT OF THE GAME--> <!--16 Cards, 8 Pairs-->
+      <!-- Icon Card  -->
+      <div class="cards"> 
+        <div class="box" data-icon="cpu">
+          <img src="./images/game/cpu_game.png"/>
+          <div class="face front"><i class="fas fa-cpu"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="cpu">
+          <img src="./images/game/cpu_name.png"/>
+          <div class="face front"><i class="fas fa-cpu"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="keyboard">
+          <img src="./images/game/keyboard_game.png"/>
+          <div class="face front"><i class="fas fa-keyboard"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="keyboard">
+          <img src="./images/game/keyboard_name.png"/>
+          <div class="face front"><i class="fas fa-keyboard"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="monitor">
+          <img src="./images/game/monitor_game.png"/>
+          <div class="face front"><i class="fas fa-monitor"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="monitor">
+          <img src="./images/game/monitor_name.png"/>
+          <div class="face front"><i class="fas fa-monitor"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="motherboard">
+          <img src="./images/game/motherboard_game.png"/>
+          <div class="face front"><i class="fas fa-motherboard"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="motherboard">
+          <img src="./images/game/motherboard_name.png"/>
+          <div class="face front"><i class="fas fa-motherboard"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="twitter">
+          <img src="./images/game/twitter_game.png"/>
+          <div class="face front"><i class="fas fa-twitter"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="twitter">
+          <img src="./images/game/twitter_name.png"/>
+          <div class="face front"><i class="fas fa-twitter"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="youtube">
+          <img src="./images/game/youtube_game.png"/>
+          <div class="face front"><i class="fas fa-youtube"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="youtube">
+          <img src="./images/game/youtube_name.png"/>
+          <div class="face front"><i class="fas fa-youtube"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="facebook">
+          <img src="./images/game/facebook_game.png"/>
+          <div class="face front"><i class="fas fa-facebook"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="facebook">
+          <img src="./images/game/facebook_name.png"/>
+          <div class="face front"><i class="fas fa-facebook"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="spotify">
+          <img src="./images/game/spotify_game.png"/>
+          <div class="face front"><i class="fas fa-spotify"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Name Card -->
+        <div class="box" data-icon="spotify">
+          <img src="./images/game/spotify_name.png">
+          <div class="face front"><i class="fas fa-spotify"></i></div>
+          <div class="face back">
+            <img src="./images/game/logo.png"/>
+          </div>
+        </div>
+        <!-- Icon Card  -->
+        <div class="box" data-icon="mouse">
+            <img src="./images/game/mouse_game.png"/>
+            <div class="face front"><i class="fas fa-mouse"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Name Card -->
+          <div class="box" data-icon="mouse">
+            <img src="./images/game/mouse_name.png"/>
+            <div class="face front"><i class="fas fa-mouse"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Icon Card  -->
+          <div class="box" data-icon="ssd">
+            <img src="./images/game/ssd_game.png"/>
+            <div class="face front"><i class="fas fa-ssd"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Name Card -->
+          <div class="box" data-icon="ssd">
+            <img src="./images/game/ssd_name.png"/>
+            <div class="face front"><i class="fas fa-ssd"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Icon Card  -->
+          <div class="box" data-icon="tumblr">
+            <img src="./images/game/tumblr_game.png"/>
+            <div class="face front"><i class="fas fa-tumblr"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Name Card -->
+          <div class="box" data-icon="tumblr">
+            <img src="./images/game/tumblr_name.png"/>
+            <div class="face front"><i class="fas fa-tumblr"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Icon Card  -->
+          <div class="box" data-icon="telegram">
+            <img src="./images/game/telegram_game.png"/>
+            <div class="face front"><i class="fas fa-telegram"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+          <!-- Name Card -->
+          <div class="box" data-icon="telegram">
+            <img src="./images/game/telegram_name.png">
+            <div class="face front"><i class="fas fa-telegram"></i></div>
+            <div class="face back">
+              <img src="./images/game/logo.png"/>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- Script for Javascript -->
+    <script text="text/javascript">
+      const sound = document.getElementById('sound');
+  
+      document.getElementById("soundbutton").addEventListener("click", function() {
+        this.textContent = this.textContent === "Mute 🔇" ? "Unmute 🔈" : "Mute 🔇"; 
+        sound.muted = !sound.muted;
+      })
+      let minute = document.getElementById("minute");
+      let second = document.getElementById("second");
+      let secondpass = 0,
+        minutepass = 0,
+        timecounter;
+      let userNameToStore;
+
+      /* GAME TIMER */
+      [minute.innerHTML, second.innerHTML] = [3, 00];
+      let intervalOne, intervalTwo;
+
+      document.querySelector(".upper-layer span").onclick = (e) => {
+        let userName = prompt("Enter your name");
+        if (userName === "" || userName === null) {
+          document.querySelector(".game-info .name span").innerHTML = "Unknown";
+          userName = "Unknown";
+        } else {
+          document.querySelector(".game-info .name span").innerHTML = userName;
+        }
+        userNameToStore = userName;
+
+        e.target.parentElement.remove();
+        timecounter = setInterval(() => {
+          secondpass++;
+          if (secondpass == 60) {
+            minutepass++;
+            secondpass = 0;
+          }
+        }, 1000);
+        startTimer();
+        showCards();
+      };
+
+      let duration = 1000;
+      let wrongTries = 0;
+      let boxsContainer = document.querySelector(".cards");
+      let boxs = Array.from(boxsContainer.children);
+      let orderRange = [...Array(boxs.length).keys()];
+
+      range = swap(orderRange);
+      boxs.forEach((box, ind) => {
+        box.style.order = range[ind];
+        box.addEventListener("click", () => {
+          flipBox(box);
+        });
+      });
+
+      let gamEnd = setInterval(() => {
+        if (minute.innerHTML == 0 && second.innerHTML == 0) {
+          endGame(false);
+          clearInterval(gamEnd);
+          document.querySelector(".timer").classList.remove("danger");
+        }
+      }, 500);
+
+      /* Flip Cards */
+      function flipBox(box) {
+        box.classList.add("is-flipped");
+
+        let flippedCard = boxs.filter((box) => box.classList.contains("is-flipped"));
+        if (flippedCard.length == 2) {
+          stopClicking();
+          matchCards(flippedCard[0], flippedCard[1]);
+        }
+        let matchedCards = boxs.filter((box) => {
+          return box.classList.contains("is-matched");
+        });
+
+        /* Length of Cards */
+        if (matchedCards.length == 24) {
+          endGame(true);
+        }
+      }
+
+      /* After the Game */
+      function endGame(win) {
+        let div = document.createElement("div");
+        let innerdiv = document.createElement("div");
+        let h2 = document.createElement("h2");
+        let p = document.createElement("p");
+        /* Player Wrong Tries */
+        if (win) {
+          h2.appendChild(document.createTextNode("YOU WIN"));
+          stopTimer();
+          let faults;
+          if (wrongTries < 5) {
+            p.appendChild(document.createTextNode(`YOU ARE BRILLIANT! YOU GOT `));
+            faults = `<span>${wrongTries}</span> FAULTS`;
+          } else if (wrongTries < 10) {
+            p.appendChild(document.createTextNode(`YOU ARE GOOD! YOU GOT `));
+            faults = `<span>${wrongTries}</span> FAULTS`;
+          } else if (wrongTries < 15) {
+            p.appendChild(document.createTextNode(`NOT BAD! YOU GOT `));
+            faults = `<span>${wrongTries}</span> FAULTS`;
+          } else if (wrongTries < 20) {
+            p.appendChild(document.createTextNode(`TRY HARDER. YOU GOT `));
+            faults = `<span>${wrongTries}</span> FAULTS`;
+          } else {
+            p.appendChild(document.createTextNode(`TRY HARDER. YOU GOT `));
+            faults = `<span>${wrongTries}</span> FAULTS`;
+          }
+          p.innerHTML += faults;
+          collectAndStore();
+        } 
+        /* Player Lose the Game */
+        else {
+          h2.appendChild(document.createTextNode("YOU LOSE!"));
+          p.appendChild(document.createTextNode(`BETTER LUCK NEXT TIME.`));
+          stopTimer();
+        }
+
+        /* Link to the Level Page */
+        let a = document.createElement("a");
+        a.href = "level.html";
+        a.append("REPLAY");
+        innerdiv.appendChild(h2);
+        innerdiv.appendChild(p);
+        innerdiv.appendChild(leader_board());
+        innerdiv.appendChild(a);
+        div.appendChild(innerdiv);
+        div.classList.add("game-end");
+        document.body.prepend(div);
+      }
+
+      function stopClicking() {
+        boxsContainer.classList.add("unclickable");
+        setTimeout(() => {
+          boxsContainer.classList.remove("unclickable");
+        }, duration);
+      }
+
+      /* Matching Two Cards */
+      function matchCards(one, two) {
+        let userWrongTries = document.querySelector(".score span");
+        if (one.dataset.icon === two.dataset.icon) {
+          one.classList.remove("is-flipped");
+          two.classList.remove("is-flipped");
+
+          one.classList.add("is-matched");
+          two.classList.add("is-matched");
+        } else {
+          userWrongTries.innerHTML = ++wrongTries;
+          setTimeout(() => {
+            one.classList.remove("is-flipped");
+            two.classList.remove("is-flipped");
+          }, duration);
+        }
+      }
+
+      function swap(array) {
+        let random,
+          current = array.length,
+          temp;
+        while (current > 0) {
+          random = Math.floor(Math.random() * current);
+          current--;
+          temp = array[current];
+          array[current] = array[random];
+          array[random] = temp;
+        }
+        return array;
+      }
+
+      function startTimer() {
+        intervalOne = setInterval(() => {
+          if (second.innerHTML == 0) {
+            second.innerHTML = 60;
+            minute.innerHTML = `0${--minute.innerHTML}`;
+          }
+          second.innerHTML--;
+          if (second.innerHTML < 10) {
+            second.innerHTML = `0${second.innerHTML}`;
+          }
+          if (minute.innerHTML == 0) {
+            document.querySelector(".timer").classList.add("danger");
+          }
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(intervalOne);
+        clearInterval(intervalTwo);
+        clearInterval(timecounter);
+      }
+
+      /* Cards Rotate */
+      function showCards() {
+        boxs.forEach((box) => {
+          box.style.transform = "rotateX(0deg)";
+          setTimeout(() => {
+            box.style.transform = "";
+          }, 2000);
+        });
+        stopClicking();
+      }
+
+      /* Link to Leaderboard */
+      function leader_board() {
+        let a = document.createElement("a");
+        a.href = "leaderBoard1.html";
+        a.append("LEADERBOARD");
+        return a;
+      }
+
+      function collectAndStore() {
+        let playerInLeader = [];
+        if (localStorage.getItem("player")) {
+          playerInLeader = JSON.parse(localStorage.getItem("player"));
+          playerInLeader.push({
+            userName: userNameToStore,
+            faults: wrongTries,
+            time: {
+              seconds: secondpass,
+              minute: minutepass,
+            },
+          });
+          console.log(playerInLeader);
+        } else {
+          playerInLeader = [
+            {
+              userName: userNameToStore,
+              faults: wrongTries,
+              time: {
+                seconds: secondpass,
+                minute: minutepass,
+              },
+            },
+          ];
+        }
+
+        /* Sorting Players From Best to the Worst */
+        playerInLeader.sort((a, b) => {
+          if (a.faults !== b.faults) return a.faults - b.faults;
+        });
+
+        playerInLeader.sort((a, b) => {
+          if (a.faults === b.faults) {
+            if (a.time.minute !== b.time.minute)
+              return +b.time.minute - +a.time.minute;
+            else if (a.time.seconds !== b.time.seconds)
+              return +b.time.seconds - +a.time.seconds;
+          }
+        });
+
+        console.log(playerInLeader);
+        let jsonOpject = JSON.stringify(playerInLeader);
+        console.log(jsonOpject);
+
+        localStorage.setItem("player", jsonOpject);
+      }
+    </script>
+  </body>
+</html>

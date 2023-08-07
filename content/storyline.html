@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mind Match</title>
+
+  <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=VT323&display=swap');
+
+      *{    
+          background-repeat:no-repeat;
+          background-attachment:fixed;
+          background-position:center;
+          background-size: cover;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'VT323', monospace;
+      }
+
+      body{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background-image: url(images/mainbg.gif);
+      }
+          
+      .hide {
+          display: none !important;
+      }
+
+      .show {
+          display: block !important;
+      }
+
+      h4{
+          font-size: 40px;
+          font-weight: 600;
+          text-align: center;
+          padding-top: 10px;
+          padding-bottom: 10px;
+      }
+
+      .part1,.part2,.part3,.part4,.part5,.part6 {
+          display: block;
+          background: whitesmoke;
+          width: 500px;
+          height: 215px;
+          border: 3px solid rgb(127, 81, 133);
+          border-radius: 10px;
+      }
+
+      .content .storyline1{
+          display: block;
+          text-align: center;
+          padding-top: 5px;
+          padding-bottom: 10px;
+      }
+
+      .storyline1 .text{
+          font-size: 20px;
+          padding-left: 7px;
+          padding-right: 7px;
+          
+      }
+
+      .part2 {
+          display: none;
+          background: whitesmoke;
+          width: 500px;
+          height: 210px;
+          border: 3px solid rgb(127, 81, 133);
+          border-radius: 10px;
+      }
+
+      .content .storyline2{
+          display: block;
+          text-align: center;
+          padding-top: 5px;
+          padding-bottom: 14px;
+      }
+
+      .storyline2 .text{
+          font-size: 20px;
+          padding-bottom: 10px;
+      }
+
+      .part3 {
+          display: none;
+          background: whitesmoke;
+          width: 500px;
+          height: 201px;
+          border: 3px solid rgb(127, 81, 133);
+          border-radius: 10px;
+      }
+
+      .content .storyline3{
+          display: block;
+          text-align: center;
+          padding-top: 5px;
+          padding-bottom: 15px;
+      }
+
+      .storyline3 .text{
+          font-size: 19px;
+      }
+
+      .part4{
+          display: none;
+      }
+      .part5{
+          display: none;
+      }
+      .part6{
+          display: none;
+      }
+
+      .content .buttons{
+          display: flex;
+          border-top: 1px solid black;
+          padding: 30px;
+          padding-top: 5px;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      button{
+          background-color: rgb(127, 81, 133);
+          color: white;
+          font-size: 15px;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          margin: 5px;
+      }
+
+      button:hover {
+          background-color: black;
+          color: white;
+      }
+  </style>
+  
+</head>
+<body>
+  <!-- Storyline 1st Page -->
+  <div class="part1">
+    <h4>Today's Mission</h4>
+    <div class="content"> 
+      <div class="storyline1">
+        <p class="text">Welcome hero, you have a special
+          <br>mission today. You need to help a student to review
+          <br>for his exam about hardware and application software components</p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Next Page -->
+        <button onclick="hidePart1()">Next</button>
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Skip</button>
+      </div>
+    </div>
+  </div>
+  <!-- Storyline 2nd Page -->
+  <div class="part2">
+    <h4>Today's Mission  </h4>
+    <div class="content"> 
+      <div class="storyline2">
+        <p class="text">He needs a little help in identifying the object
+          <br>based on its appearance. In order to do that, you
+          <br>need to play a memory game, but it's not that simple.
+        </p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Next Page -->
+        <button onclick="showPart3()">Next</button>
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Skip</button>
+      </div>
+    </div>
+  </div>
+<!-- Storyline 3rd Page -->
+  <div class="part3">
+    <h4>Today's Mission  </h4>
+    <div class="content"> 
+      <div class="storyline3">
+        <p class='text'>Instead of matching two pictures, you'll 
+          <br>be matching a card with the picture to a card
+          <br>that contains its corresponding name. <!-- <br> <br> -->
+          </p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Next Page -->
+        <button onclick="showPart4()">Next</button>
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Skip</button>
+      </div>
+    </div>
+  </div>
+<!-- Storyline 4th Page -->
+  <div class="part4">
+    <h4>Today's Mission  </h4>
+    <div class="content"> 
+      <div class="storyline2">
+        <p class="text">You have the option to select the game's
+          <br>level of difficulty. As soon as you've
+          <br>made a decision, pay close attention.
+        </p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Next Page -->
+        <button onclick="showPart5()">Next</button>
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Skip</button>
+      </div>
+    </div>
+  </div>
+<!-- Storyline 5th Page -->
+  <div class="part5">
+    <h4>Today's Mission  </h4>
+    <div class="content"> 
+      <div class="storyline2">
+        <p class="text">Because the list of components, together with their
+          <br>corresponding names and meanings, will flash on the screen
+          <br>for 60 seconds to help you get familiarized with it.
+        </p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Next Page -->
+        <button onclick="showPart6()">Next</button>
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Skip</button>
+      </div>
+    </div>
+  </div>
+<!-- Storyline 6th Page -->
+  <div class="part6">
+    <h4>Today's Mission  </h4>
+    <div class="content"> 
+      <div class="storyline2">
+        <p class="text">Keep in mind that the time you'll take will also
+          <br>be monitored so complete it as fast as you can.
+          <br>Are you ready?
+        </p>
+      </div>
+      <div class="buttons">
+        <!-- Link to Review Page -->
+        <button onclick="window.location.assign('review1.html')">Yes</button> 
+        <!-- Link to Home Page -->
+        <button onclick="window.location.assign('../index.html')">No</button> 
+      </div>
+    </div>
+  </div>
+  <script>
+      body.onload="hidePart5(), hidePart6()"
+/* Function to Hide 1st Page After Trigger */
+function hidePart1() {
+    document.querySelector(".part1").classList.remove("show");
+    document.querySelector(".part1").classList.add("hide");
+    document.querySelector(".part3").classList.remove("show");
+    document.querySelector(".part3").classList.add("hide");
+    document.querySelector(".part2").classList.add("show");
+    document.querySelector(".part4").classList.remove("show");
+    document.querySelector(".part4").classList.add("hide");
+    document.querySelector(".part5").classList.remove("show");
+    document.querySelector(".part5").classList.add("hide");
+    document.querySelector(".part6").classList.remove("show");
+    document.querySelector(".part6").classList.add("hide");
+  }
+  /* Function to Show 2nd Page After Trigger */
+  function showPart3() {
+    document.querySelector(".part1").classList.remove("hide");
+    document.querySelector(".part1").classList.remove("show");
+    document.querySelector(".part1").classList.add("hide");
+    document.querySelector(".part2").classList.remove("hide");
+    document.querySelector(".part2").classList.remove("show");
+    document.querySelector(".part2").classList.add("hide");
+    document.querySelector(".part3").classList.remove("hide");
+    document.querySelector(".part3").classList.add("show");
+    document.querySelector(".part4").classList.remove("show");
+    document.querySelector(".part4").classList.add("hide");
+    document.querySelector(".part5").classList.remove("show");
+    document.querySelector(".part5").classList.add("hide");
+    document.querySelector(".part6").classList.remove("show");
+    document.querySelector(".part6").classList.add("hide");
+  }
+  /* Function to Show 3rd Page After Trigger */
+  function showPart4() {
+    document.querySelector(".part1").classList.remove("show");
+    document.querySelector(".part1").classList.add("hide");
+    document.querySelector(".part3").classList.remove("show");
+    document.querySelector(".part3").classList.add("hide");
+    document.querySelector(".part2").classList.remove("show");
+    document.querySelector(".part2").classList.add("hide");
+    document.querySelector(".part4").classList.remove("hide");
+    document.querySelector(".part4").classList.add("show");
+    document.querySelector(".part5").classList.remove("show");
+    document.querySelector(".part5").classList.add("hide");
+    document.querySelector(".part6").classList.remove("show");
+    document.querySelector(".part6").classList.add("hide");
+  }
+  /* Function to Show 4th Page After Trigger */
+  function showPart5() {
+    document.querySelector(".part1").classList.remove("show");
+    document.querySelector(".part1").classList.add("hide");
+    document.querySelector(".part3").classList.remove("show");
+    document.querySelector(".part3").classList.add("hide");
+    document.querySelector(".part2").classList.remove("show");
+    document.querySelector(".part2").classList.add("hide");
+    document.querySelector(".part4").classList.remove("show");
+    document.querySelector(".part4").classList.add("hide");
+    document.querySelector(".part5").classList.remove("hide");
+    document.querySelector(".part5").classList.add("show");
+    document.querySelector(".part6").classList.remove("show");
+    document.querySelector(".part6").classList.add("hide");
+  }
+ /* Function to Show 5th Page After Trigger */
+  function showPart6() {
+    document.querySelector(".part1").classList.remove("show");
+    document.querySelector(".part1").classList.add("hide");
+    document.querySelector(".part3").classList.remove("show");
+    document.querySelector(".part3").classList.add("hide");
+    document.querySelector(".part2").classList.remove("show");
+    document.querySelector(".part2").classList.add("hide");
+    document.querySelector(".part4").classList.remove("show");
+    document.querySelector(".part4").classList.add("hide");
+    document.querySelector(".part5").classList.remove("show");
+    document.querySelector(".part5").classList.add("hide");
+    document.querySelector(".part6").classList.remove("hide");
+    document.querySelector(".part6").classList.add("show");
+  }
+  </script>
+</body>
+</html>

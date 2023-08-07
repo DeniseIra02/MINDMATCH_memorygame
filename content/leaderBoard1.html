@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leaderboard</title>
+
+    <link rel="icon" href="../content/images/icon.png">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=VT323&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "VT323", monospace;
+        margin: 0;
+        background-image: url('../content/images/leaderboardbg.gif');
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-position:center;
+        background-size: cover;
+      }
+
+      .heading {
+        text-align: center;
+        color: white;
+        height: 100px;
+        font-size: 100px;
+        line-height: 100px;
+        background-color: #222;
+        opacity: 0.8;
+        letter-spacing: 5px;
+
+      }
+
+
+      table {
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        opacity: 0.5;
+        padding: 25px;
+
+      }
+
+      table th {
+        color: white;
+        background-color: #222;
+        letter-spacing: 3px;
+        font-size: 40px;
+      }
+
+      table tr:nth-child(even) {
+        background-color: green;
+        font-size: 30px;
+      }
+
+      table tr:nth-child(odd) {
+        background-color: green;
+        font-size: 30px;
+      }
+
+      table .name {
+        text-align: center;
+        justify-content: center;
+        padding-left: 15px;
+      }
+
+      .play {
+        font-size: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        background-color: #7f5185;
+        padding: 20px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 50px;
+        margin-left: 38%;
+        margin-bottom: 10px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+      }
+
+      .home {
+        font-size: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        background-color: #7f5185;
+        padding: 20px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 50px;
+        margin-left: 10%;
+        margin-bottom: 10px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+      }
+
+      a:hover {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="heading">
+      <i class="fas fa-crown fa-2x"></i> LEADERBOARD
+      <i class="fas fa-crown fa-2x"></i>
+    </div>
+    <table>
+      <thead>
+        <th>NAME</th>
+        <th>FAULTS</th>
+        <th>COMPLETION TIME</th>
+      </thead>
+      <tbody id="table"></tbody>
+    </table>
+
+    <!--CHANGE LINK TO 3 LEVELS-->
+    <a href="level.html" class="play">PLAY</a>
+    
+    <a href="../index.html" class='home'>QUIT</a>
+
+
+    <script>
+      if (localStorage.getItem("player")) {
+      let playerInfo = JSON.parse(localStorage.getItem("player"));
+      for (const ind in playerInfo) {
+        let {
+          userName: user,
+          faults,
+          time: { seconds, minute },
+        } = playerInfo[ind];
+        let table = document.getElementById("table");
+        let tr = document.createElement("tr");
+        let nameTd = document.createElement("td");
+        nameTd.classList.add("name");
+        nameTd.appendChild(document.createTextNode(`${+ind + 1}-${user}`));
+        tr.appendChild(nameTd);
+        let faultsTd = document.createElement("td");
+        faultsTd.appendChild(document.createTextNode(faults));
+        tr.appendChild(faultsTd);
+        let timeTd = document.createElement("td");
+        let theTime =
+          seconds < 10
+            ? document.createTextNode(`0${minute}:0${seconds}`)
+            : document.createTextNode(`0${minute}:${seconds}`);
+        timeTd.appendChild(theTime);
+        tr.appendChild(timeTd);
+        table.appendChild(tr);
+      }
+    } else {
+      console.log("none");
+    }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mind Match</title>
+
+  <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+  <style>
+         @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;800&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=VT323&display=swap');
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'VT323';
+        }
+
+        body{
+            background-image: url(images/reviewbg.gif);
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-position:center;
+            background-size: cover;
+        }
+                
+        .components{
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat( 6, minmax(255px,240px));
+            grid-gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+                
+        .heading{
+            background: none;
+            color: #f6f6f6;
+            border-radius: 15px;
+            margin-top: 5px;
+            padding: 10px 0 10px 0;
+            grid-column: 1/-1;
+            width: 100%;
+            margin-bottom: 55px;
+        }
+
+        .heading p{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 5px;
+        }
+
+        .heading h1{
+            font-size: 70px;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            width: 5rem;
+            padding: 7px 15px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: 400;
+            font-size: 1.5rem;
+            background-color: rgb(127, 81, 133);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+
+        .component-items{
+            display: grid;
+            position: relative;
+            grid-template-rows: auto 170px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            margin: 5px 5px;
+            align-items: center;
+            background-color: white;
+            opacity: 0.9;
+        }
+
+        .component-items img{
+            position: relative;
+            align-items: center;
+            width: 63px;
+            height: 63px;
+            border-radius: 15px 15px 0 0;
+            margin-left: auto;
+            margin-top: 15px;
+            margin-right: auto;
+        }
+
+        .component-items img:hover{
+            transform: scale(1.3);
+        }
+
+        .details{
+            padding: 2px;
+            display: grid;
+            grid-template-rows: auto 1fr 15px;
+            grid-row-gap: 15px;
+            padding-top: 25px;
+
+        }
+
+        .details-sub{
+            display: grid;
+            grid-template-columns: auto auto;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .details-sub h5{
+            font-size: 20px;
+            padding: auto;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .details p{
+            color: #474747;
+            font-size: 15px;
+            line-height: 25px;
+            text-align: center;
+            padding-top: 5px;
+        }
+  </style>
+</head>
+<body>
+    <!-- Review Page Heading (Software) -->
+    <div class="components">
+        <div class="heading">
+            <h1>COMPUTER SOFTWARE APPLICATION</h1>
+			<p>Your time will expire after <span id="timer" style="color:rgb(247, 62, 62)">60</span> seconds 
+            <a href="level.html" class="btn"> SKIP </a></p>      
+        </div>
+        <!-- 1st Hardware Component -->
+        <div class="component-items">
+            <img src="images/amazon.png" width="64px" height="64px">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Amazon</h5>
+                </div>
+                <p>a company focusing on e-commerce, cloud computing and online advertising.</p>
+            </div>
+        </div>
+        <!-- 2nd Hardware Component -->
+        <div class="component-items">
+            <img src="images/browser.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Browser</h5>
+                </div>
+                <p>a computer program with a graphical user interface for displaying and navigating between web pages.</p>
+            </div>
+        </div>
+        <!-- 3rd Hardware Component -->
+        <div class="component-items">
+            <img src="images/facebook.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Facebook</h5>
+                </div>
+                <p>an online social networking website where people can create profiles, share information and etc.</p>
+            </div>
+        </div>
+        <!-- 4th Hardware Component -->
+        <div class="component-items">
+            <img src="images/github.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Github</h5>
+                </div>
+                <p>a code hosting platform for version control and collaboration.</p>
+            </div>
+        </div>
+        <!-- 5th Hardware Component -->
+        <div class="component-items">
+            <img src="images/pinterest.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Pinterest</h5>
+                </div>
+                <p>a social curation website for sharing and categorizing images found online.</p>
+            </div>
+        </div>
+        <!-- 6th Hardware Component -->
+        <div class="component-items">
+            <img src="images/soundcloud.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Sound cloud</h5>
+                </div>
+                <p>a German music streaming service that enables its users to upload, promote, and share audio.</p>
+            </div>
+        </div>
+        <!-- 7th Hardware Component -->
+        <div class="component-items">
+            <img src="images/spotify.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Spotify</h5>
+                </div>
+                <p>a digital music, podcast, and video service that gives you access to millions of songs.</p>
+            </div>
+        </div>
+        <!-- 8th Hardware Component -->
+		<div class="component-items">
+            <img src="images/telegram.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Telegram</h5>
+                </div>
+                <p>a message that is sent electronically and then printed and delivered to someone's home or office.</p>
+            </div>
+        </div>
+        <!-- 9th Hardware Component -->
+		<div class="component-items">
+            <img src="images/tumblr.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Tumblr</h5>
+                </div>
+                <p>a blogging and social media tool that allows users to publish a "tumblelog", or short blog posts.</p>
+            </div>
+        </div>
+        <!-- 10th Hardware Component -->
+		<div class="component-items">
+            <img src="images/twitter.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Twitter</h5>
+                </div>
+                <p>a social networking that allows users to send and receive text-based messages or posts of up to 140 characters called "tweets."</p>
+            </div>
+        </div>
+        <!-- 11th Hardware Component -->
+		<div class="component-items">
+            <img src="images/Viber.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Viber</h5>
+                </div>
+                <p>a VoIP and instant messaging application with cross-platform capabilities that allows users to exchange audio and video calls and etc.</p>
+            </div>
+        </div>
+        <!-- 12th Hardware Component -->
+		<div class="component-items">
+            <img src="images/Youtube.png">
+            <div class="details">
+                <div class="details-sub">
+                    <h5>Youtube</h5>
+                </div>
+                <p>a popular video sharing website where registered users can upload and share videos with anyone able to access the site.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let counter = document.querySelector('span');
+        /* Time limit */
+        let count = 59;
+        setInterval(()=>{
+            counter.innerText = count;
+            count--
+            /* Link to Review Page (Software) */
+            if(count == 0) location.replace('level.html')
+        },1000)
+    </script>
+</body>
+</html>
